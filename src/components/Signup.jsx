@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import authService from "../appwrite/auth.js";
 import {useNavigate , Link} from "react-router-dom";
-import {Login} from "../store/authSlice.js";
+import {login} from "../store/authSlice.js"
 import {Button , Input , Logo} from "./index.js";
 import {useDispatch} from "react-redux";
 import {useForm} from "react-hook-form";
@@ -18,7 +18,7 @@ function Signup() {
            const userData= await authService.createAccount(data);
            if(userData){
                const userData = await authService.getCurrentAccount(userData);
-                if (userData) dispatch(Login(userData));
+                if (userData) dispatch(login(userData));
                 navigate("/");
            }
         }catch (err){
